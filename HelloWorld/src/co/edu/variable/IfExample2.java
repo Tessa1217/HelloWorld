@@ -9,9 +9,6 @@ public class IfExample2 {
 		num1 = 350;
 		num2 = 127;
 		
-		num1 = 123;
-		num2 = 123;
-		
 		if(num1 > num2) {
 			System.out.println("큰 수는 " + num1);
 		} else {
