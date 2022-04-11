@@ -5,8 +5,13 @@ public class BoxHomework {
 	public static void main(String[] args) {
 		int orange = 127;
 		int tenbox = orange/10;
-		int fivebox = orange/5;
-		System.out.printf("10개씩 담을 수 있는 박스: %d박스\n", tenbox);
-		System.out.printf("5개씩 담을 수 있는 박스: %d박스\n", fivebox);
+		int fivebox;
+		if((orange%10)%5==0) {
+			fivebox = (orange%10)/5;
+		} else {
+			fivebox = (orange%10)/5 + 1;
+		}
+		System.out.printf("10개씩 들어가는 박스: %d\n", tenbox);
+		System.out.printf("5개씩 들어가는 박스: %d", fivebox);
 	}	
 }
