@@ -12,7 +12,7 @@ public class IfExample2 {
 		if(num1 > num2) {
 			System.out.println("큰 수는 " + num1);
 		} else {
-			System.out.println("큰 수는 " + num2);
+			System.out.println("큰 수는 " + num2); 
 		}
 	}
 }
