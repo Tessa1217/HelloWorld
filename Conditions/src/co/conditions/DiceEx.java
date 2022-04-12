@@ -1,18 +1,25 @@
 package co.conditions;
+import java.util.Scanner;
 
 public class DiceEx {
 	public static void main(String[] args) {
 		int dice = (int) (Math.random()*6) + 1;
-		System.out.println(dice);
+		Scanner scn = new Scanner(System.in);
 		
-		switch(dice) {
-		case 1: break;
-		case 2: break;
-		case 3: break;
-		case 4: break;
-		case 5: break;
-		default: 
+		while(true) {
+			System.out.print("주사위의 눈을 맞춰보세요 >> \n");
+			int guess = scn.nextInt();
+			if(dice == guess) {
+				System.out.println("정답입니다.");
+				break;
+			} 
+			if(dice > guess) {
+				System.out.println("UP");
+			} else if((guess > 6) || (guess <= 0)) {
+				System.out.println("유효한 값을 입력하세요.");
+			} else {
+				System.out.println("DOWN");
+			}
 		}
 	}
-
 }
