@@ -28,7 +28,7 @@ public class RockScissorPaperEx {
 			} else {
 				System.out.println("You Lose!");
 			}
-		}
+		} 
 		System.out.printf("User: %d, Computer: %d", user, computer);
 	}
 }
