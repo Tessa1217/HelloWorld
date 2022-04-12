@@ -1,9 +1,13 @@
 package co.loop;
 
+import java.util.Scanner;
+
 public class StarEx2 {
 	public static void main(String[] args) {
 
-		int star = 5;
+		Scanner scn = new Scanner(System.in);
+		System.out.println("정수를 입력하세요: ");
+		int star = scn.nextInt();
 
 		/*
 		 * 별찍기 7
