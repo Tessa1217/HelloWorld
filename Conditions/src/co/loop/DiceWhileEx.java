@@ -18,6 +18,25 @@ public class DiceWhileEx {
 			}
 		}
 		
+		// 두 개의 주사위 합이 6이 되는 케이스를 전부 출력하는 코드
+		sum = 0;
+		cnt = 0;
+		int[] diceOne = new int[6];
+		int[] diceTwo = new int[6];
+		
+		for(int i = 0; i < diceOne.length; i++) {
+			diceOne[i] = i+1;
+			diceTwo[i] = i+1;
+		}
+		
+		for(int i = 0; i < diceOne.length; i++) {
+			for(int j = 0; i < diceTwo.length; i++) {
+				if(diceOne[i] + diceTwo[j] == 6) {
+					System.out.printf("(%d, %d)", diceOne[i], diceTwo[j]);
+				}
+			}
+		}
+
 	}
 
 }
