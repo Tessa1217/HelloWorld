@@ -21,6 +21,15 @@ public class CarEx {
 		System.out.println(car4.model); // automobile
 		System.out.println(car4.color); // black
 		System.out.println(car4.maxSpeed); // 300
+		
+		car4.setGas(3);
+		car4.canRun();
+		car4.drive();
+		car4.canRun();
+		car4.drive();
+		car4.canRun();
+		car4.drive();
+		car4.canRun();
 	}
 
 }
