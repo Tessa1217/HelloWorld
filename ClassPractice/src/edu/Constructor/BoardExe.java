@@ -35,9 +35,9 @@ public class BoardExe {
 
 				// addBoard 기능 호출
 				int errCheck = boardList.addBoard(newBoard);
-				if(errCheck == 1) {
+				if (errCheck == 1) {
 					System.out.println("게시글 번호가 중복되었습니다.");
-				} else if (errCheck == 0){
+				} else if (errCheck == 0) {
 					System.out.println("게시글이 성공적으로 저장되었습니다.");
 				} else if (errCheck == -1) {
 					System.out.println("게시글을 더 이상 추가할 수 없습니다.");
@@ -55,9 +55,9 @@ public class BoardExe {
 
 				Board editBoard = new Board(boardNo, newTitle, newContent, null);
 				boolean editCheck = boardList.modifyBoard(editBoard);
-				if(editCheck == true) {
+				if (editCheck == true) {
 					System.out.println("게시글이 성공적으로 수정되었습니다.");
-				} else {
+				} else if (editCheck == false) {
 					System.out.println("게시글 수정에 실패했습니다.");
 				}
 
@@ -75,38 +75,39 @@ public class BoardExe {
 				System.out.println("삭제할 게시글 번호 >>> ");
 				int boardNo = scn.nextInt();
 				scn.nextLine();
-				//boardList.deleteBoard(boardNo) 타입 자체가 불린형이라 바로 if문에 담아도 됨
+				// boardList.deleteBoard(boardNo) 타입 자체가 불린형이라 바로 if문에 담아도 됨
 				int errCheck = boardList.deleteBoard(boardNo);
-				if(errCheck == 0) {
+				if (errCheck == 0) {
 					System.out.println("게시글이 성공적으로 삭제되었습니다.");
-				} else if (errCheck == -1){
+				} else if (errCheck == -1) {
 					System.out.println("삭제가 정상적으로 완료되지 않았습니다.");
-				} //else if (errCheck == -1) {
-					//System.out.println("삭제가 정상적으로 완료되지 않았습니다.");
-				//}
+				}
 
 			} else if (selectNo == 5) {
-				
+
 				System.out.println("조회할 게시글 번호 >>> ");
-				int boardNo = scn.nextInt(); 
-				scn.nextLine(); 
+				int boardNo = scn.nextInt();
+				scn.nextLine();
 				Board getBoard = boardList.searchOneBoard(boardNo);
-				if(getBoard == null) {
+				if (getBoard == null) {
 					System.out.println("조회할 게시글이 없습니다.");
 				} else {
-				getBoard.getDetailInfo();
+					getBoard.getDetailInfo();
 				}
-				
+
 			} else if (selectNo == 6) {
 				System.out.println("조회할 작성자 >>> ");
 				String author = scn.nextLine();
-				Board[] authorBoard = boardList.searchWriter(author);
-				for(Board board : authorBoard) {
-					board.getDetailInfo();
+				Board[] boards = boardList.boardList();
+				for (Board board : boards) {
+					if (board != null) {
+						Board authorPost = boardList.searchWriter(board, author);
+						if (authorPost != null) {
+							authorPost.getDetailInfo();
+						}
+					}
 				}
-				
-			}
-			else if (selectNo == 9) {
+			} else if (selectNo == 9) {
 				System.out.println("프로그램을 종료합니다.");
 				break;
 			} else {
