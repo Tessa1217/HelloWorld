@@ -18,7 +18,7 @@ public class StudentEx3 {
 		String searchName = scn.next();
 		for(int i=0; i < students.length; i++) {
 			if(students[i].studName.equals(searchName)) {
-				System.out.printf("%s은 %d살이고 %d점입니다.", students[i].studName, students[i].age, students[i].score);
+				System.out.printf("%s은 %d살이고 %d점입니다.\n", students[i].studName, students[i].age, students[i].score);
 			}
 		}
 	}
