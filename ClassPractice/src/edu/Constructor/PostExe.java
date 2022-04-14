@@ -1,11 +1,12 @@
 package edu.Constructor;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PostExe {
 	public static void main(String[] args) {
 		PostList postList = new PostList();
-		postList.init(3);
+		postList.init(2);
 
 		Scanner scn = new Scanner(System.in);
 		while (true) {
@@ -94,16 +95,18 @@ public class PostExe {
 				} else if (searchPost == null) {
 					System.out.println("조회할 게시물이 없습니다.");
 				}
+				/*
+				 * } else if (selectNo == 6) { System.out.println("작성자 >>> "); String author =
+				 * scn.nextLine(); Post[] posts = postList.listPosts(); for (Post post : posts)
+				 * { Post writerPost = postList.writerSrch(post, author); if (writerPost !=
+				 * null) { writerPost.getInfo(); } }
+				 */
 			} else if (selectNo == 6) {
 				System.out.println("작성자 >>> ");
 				String author = scn.nextLine();
-				Post[] posts = postList.listPosts();
-				for (Post post : posts) {
-					Post writerPost = postList.writerSrch(post, author);
-					if (writerPost != null) {
-						writerPost.getInfo();
-					}
-				}
+				ArrayList<Post> posts = postList.searchWriter(author);
+				postList.postOfAuthor(posts);
+
 			} else if (selectNo == 9) {
 				System.out.println("프로그램을 종료합니다.");
 				break;

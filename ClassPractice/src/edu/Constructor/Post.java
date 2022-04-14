@@ -2,16 +2,14 @@ package edu.Constructor;
 
 public class Post {
 
+	// Field
 	private int postNum;
 	private String title;
 	private String content;
 	private String writer;
 	private int postCnt = 0;
 
-	public Post() {
-
-	}
-
+	// Constructor
 	public Post(int postNum, String title, String content, String writer) {
 		this.postNum = postNum;
 		this.title = title;
@@ -19,6 +17,7 @@ public class Post {
 		this.writer = writer;
 	}
 
+	// Getters and Setters
 	public int getpostNum() {
 		return postNum;
 	}
@@ -59,6 +58,7 @@ public class Post {
 		this.postCnt = postCnt;
 	}
 
+	// 출력용 메소드
 	public void getInfo() {
 		// 게시글번호, 제목, 내용, 작성자, 조회수
 		System.out.printf("게시물 번호: %d\n" //
