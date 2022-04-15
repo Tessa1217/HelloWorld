@@ -82,4 +82,10 @@ public class Post {
 		System.out.println();
 	}
 
+	// 정적 메소드
+	static void writeDate() {
+		System.out.println("날짜 출력");
+
+	}
+
 }
