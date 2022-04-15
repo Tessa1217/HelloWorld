@@ -22,5 +22,6 @@ public class Singleton {
 	// default = 동일한 패키지 내에서만 접근 가능한 접근 제한자
 	// public = 다른 패키지에서도 접근 가능한 접근 제한자
 	// private = 클래스 내부에서만 접근 가능한 접근 제한자
-	// protected
+	// protected = 동일한 패키지 내에서나 상속 받은 자식 클래스(다른 패키지)만 접근 가능한 접근 제한자
+	// private < default < protected < public
 }
