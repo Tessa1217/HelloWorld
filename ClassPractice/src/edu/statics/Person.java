@@ -1,7 +1,7 @@
 package edu.statics;
 
 //edu.statics.Person => 상위패키지.하위패키지.클래스
-public class Person {
+public class Person extends Object {
 	// final 필드 = 초기값을 주면 최종적인 값이 되어 수정 불가한 필드
 	// 객체마다 가지는 불변의 '인스턴스' 필드
 	// final 필드 초기값 지정 = 필드 선언 시, 생성자를 통해서
@@ -14,9 +14,17 @@ public class Person {
 	public Person(String ssn, String name) {
 		this.ssn = ssn;
 		this.name = name;
-		
-	// 상수(static final) = 객체마다 존재하지 않고 클래스에 존재
-	// final 필드와는 달리 인스마다 존재하지 않고 공용성을 띠는 차이가 있음
-	// 모두 대문자로 작성하는 것이 관례, 단어 혼합은 언더바로 연결 
+
+		// 상수(static final) = 객체마다 존재하지 않고 클래스에 존재
+		// final 필드와는 달리 인스마다 존재하지 않고 공용성을 띠는 차이가 있음
+		// 모두 대문자로 작성하는 것이 관례, 단어 혼합은 언더바로 연결
 	}
+
+	// Annotation
+	// @Overrride = 부모 클래스 toString -> 자식클래스가 재정의
+	@Override
+	public String toString() {
+		return "Person [nation=" + nation + ", ssn=" + ssn + ", name=" + name + "]";
+	}
+
 }
