@@ -10,7 +10,8 @@ public class PostExe {
 
 		Scanner scn = new Scanner(System.in);
 		while (true) {
-			System.out.println("01.추가 02.수정 03.목록 04.삭제 05.한 건 조회 06.작성자 조회 09.종료");
+			System.out.println("01.추가 02.수정 03.목록 04.삭제 05.한 건 조회 " //
+					+ "06.작성자 조회 07. 작성자 조회 2 09.종료");
 			System.out.println("선택 >>> ");
 			int selectNo = scn.nextInt();
 			scn.nextLine();
@@ -107,6 +108,19 @@ public class PostExe {
 				ArrayList<Post> posts = postList.searchWriter(author);
 				postList.postOfAuthor(posts);
 
+			} else if (selectNo == 7) { // 작성자 조회 2
+				System.out.println("작성자의 글 목록 조회 >>> ");
+				String searchAuthor = scn.nextLine();
+				Post[] writerList = postList.getWriterList(searchAuthor);
+				if (writerList.length == 0) {
+					System.out.println("조회할 게시물이 없습니다.");
+					continue;
+				}
+				for (Post post : writerList) {
+					if (post != null) {
+						post.getInfo();
+					}
+				}
 			} else if (selectNo == 9) {
 				System.out.println("프로그램을 종료합니다.");
 				break;

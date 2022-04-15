@@ -65,10 +65,11 @@ public class PostList {
 	public int deletePost(int postNo) {
 		int errorcase = -1;
 		for (int i = 0; i < posts.length; i++) {
-			if (posts[i].getpostNum() == postNo) {
-				posts[i] = null;
-				errorcase = 0;
-				break;
+			if (posts[i] != null) {
+				if (posts[i].getpostNum() == postNo) {
+					posts[i] = null;
+					errorcase = 0;
+				}
 			}
 		}
 		return errorcase;
@@ -93,12 +94,42 @@ public class PostList {
 	 * (post.getWriter().equals(author)) { return post; } return null; }
 	 */
 
+	// 배열을 이용한 포스트 작성자의 포스트 조회
+	public Post[] getWriterList(String writer) {
+		Post[] writerList;
+		int cnt = 0;
+
+		for (Post post : posts) {
+			if (post != null) { // null.method를 쓸 경우 NullPointerException 발생
+				// 예외 발생을 막기 위해 null이 아닌 포스트만 확인
+				if (post.getWriter().equals(writer)) {
+					cnt++;
+				}
+			}
+		}
+
+		writerList = new Post[cnt];
+
+		for (int i = 0; i < posts.length; i++) {
+			if (posts[i] != null && posts[i].getWriter().equals(writer)) {
+				for (int j = 0; j < writerList.length; j++) {
+					if (writerList[j] == null) {
+						writerList[j] = posts[i];
+					}
+				}
+			}
+		}
+		return writerList;
+	}
+
 	// 배열 리스트를 이용하여 포스트 작성자의 포스트들 담기
 	public ArrayList<Post> searchWriter(String author) {
 		ArrayList<Post> listing = new ArrayList<Post>();
 		for (Post post : posts) {
-			if (post.getWriter().equals(author)) {
-				listing.add(post);
+			if (post != null) {
+				if (post.getWriter().equals(author)) {
+					listing.add(post);
+				}
 			}
 		}
 		return listing;
@@ -106,16 +137,17 @@ public class PostList {
 
 	// 작성자의 포스트 담은 배열 리스트 출력
 
-	public void postOfAuthor(ArrayList<Post> posts) {
-		for (int i = 0; i < posts.size(); i++) {
-			if (posts.get(i) != null) {
-				posts.get(i).getInfo();
-				int currentCnt = posts.get(i).getPostCnt();
-				posts.get(i).setPostCnt(++currentCnt);
-			} else if (posts.get(i) == null) {
-				continue;
+	public void postOfAuthor(ArrayList<Post> listing) {
+		if (listing.size() == 0) {
+			System.out.println("조회할 게시물이 없습니다.");
+		} else {
+			for (Post post : listing) {
+				post.getInfo();
+				int currentCnt = post.getPostCnt();
+				post.setPostCnt(++currentCnt);
 			}
 		}
+
 	}
 
 }
