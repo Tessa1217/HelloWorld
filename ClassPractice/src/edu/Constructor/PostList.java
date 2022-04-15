@@ -12,7 +12,7 @@ public class PostList {
 		posts = new Post[size];
 	}
 
-	// 새로운 포스트 추
+	// 새로운 포스트 추가
 	public int addPost(Post post) {
 		int errorcase = -1;
 		for (int i = 0; i < posts.length; i++) {
