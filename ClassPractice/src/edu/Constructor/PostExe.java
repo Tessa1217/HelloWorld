@@ -8,10 +8,6 @@ public class PostExe {
 	public static void main(String[] args) {
 		PostList postList = new PostList();
 		User[] members = new User[3];
-		String ids = "user";
-		String passwords = "1";
-		String names = "user1";
-		members[0] = new User(ids, passwords, names);
 		postList.init(3);
 
 		Scanner scn = new Scanner(System.in);
@@ -29,92 +25,99 @@ public class PostExe {
 			}
 			scn.nextLine();
 
-			if /*(selectNo == 0) {
-				for (User member : members) {
-					if (member == null) {
-						System.out.println("생성하실 아이디를 지정해주세요 >>> ");
-						String id = scn.next();
-//						scn.nextLine();
-						System.out.println("비밀번호를 입력해주세요 >>> ");
-						String password = scn.next();
-//						scn.nextLine();
-						System.out.println("사용하실 user 아이디를 입력해주세요 >>> ");
-						String userName = scn.next();
-//						scn.nextLine();
+			// 아이디, 비밀번호, 유저 아이디를 입력하여 계정 생성
+			if (selectNo == 0) {
+				System.out.println("생성할 아이디 >>> ");
+				String id = scn.next();
+				scn.nextLine();
+				System.out.println("비밀번호 >>> ");
+				String password = scn.nextLine();
+				System.out.println("유저 아이디 >>> ");
+				String userName = scn.nextLine();
+				User user = new User(id, password, userName);
 
-						member.setPassword(password);
-						member.setUserID(id);
-						member.setUserName(userName);
-						member.showUser();
+				for (int i = 0; i < members.length; i++) {
+					if (members[i] == null) {
+						members[i] = user;
+						members[i].showUser();
 						break;
 					}
 				}
-
-				for (User member : members) {
-					if (member != null) {
-						member.showUser();
-						break;
-					} else {
-						System.out.println("null");
+			} else if (selectNo == 1) {
+				// 게시물 추가를 위하여 로그인 절차
+				boolean success = false;
+				System.out.println("아이디 >>> ");
+				String id = scn.nextLine();
+				for (int i = 0; i < members.length; i++) {
+					if (members[i] != null && members[i].getUserID().equals(id)) {
+						success = members[i].login(members[i]);
 					}
 				}
-			} else if*/ (selectNo == 1) {
-				for (User member : members) {
-					if (member != null) {
-						member.login(member);
 
-						System.out.println();
-						System.out.println("_______________");
-						System.out.println("   게시글 추가   ");
-						System.out.println("_______________");
-						System.out.println("게시글 번호 >>> ");
-						int postNo = scn.nextInt();
-						scn.nextLine();
-						System.out.println("게시글 제목 >>> ");
-						String postTitle = scn.nextLine();
-						System.out.println("게시글 내용 >>> ");
-						String postContent = scn.nextLine();
+				// 로그인 실패 시 메뉴로 돌아감
+				if (success == false) {
+					System.out.println("로그인에 실패하셨습니다.");
+					continue;
 
-						Post newPost = new Post(postNo, postTitle, postContent, member.getUserID());
-						int check = postList.addPost(newPost);
-						if (check == 1) {
-							System.out.println("게시글 번호가 중복되었습니다.");
-						} else if (check == 0) {
-							System.out.println("게시글이 성공적으로 저장되었습니다.");
-						} else if (check == -1) {
-							System.out.println("게시글을 더 이상 추가할 수 없습니다.");
-						}
-					}
 				}
+
+				// 로그인 성공 시 게시글 추
+				System.out.println();
+				System.out.println("_______________");
+				System.out.println("   게시글 추가   ");
+				System.out.println("_______________");
+				System.out.println("게시글 번호 >>> ");
+				int postNo = scn.nextInt();
+				scn.nextLine();
+				System.out.println("게시글 제목 >>> ");
+				String postTitle = scn.nextLine();
+				System.out.println("게시글 내용 >>> ");
+				String postContent = scn.nextLine();
+
+				Post newPost = new Post(postNo, postTitle, postContent, id);
+				int check = postList.addPost(newPost);
+				if (check == 1) {
+					System.out.println("게시글 번호가 중복되었습니다.");
+				} else if (check == 0) {
+					System.out.println("게시글이 성공적으로 저장되었습니다.");
+				} else if (check == -1) {
+					System.out.println("게시글을 더 이상 추가할 수 없습니다.");
+				}
+
 			} else if (selectNo == 2) {
-				for (User member : members) {
-					if (member != null) {
-						member.login(member);
+				// 수정을 위한 로그인 절차
 
-						boolean check = postList.postEmpty();
-						if (check == true) {
-							System.out.println("수정할 게시글이 없습니다.");
-							continue;
-						}
-
-						System.out.println("수정할 게시글 번호 >>> ");
-						int postNo = scn.nextInt();
-						scn.nextLine();
-						System.out.println("제목 수정 >>> ");
-						String postTitle = scn.nextLine();
-						System.out.println("내용 수정 >>> ");
-						String postContent = scn.nextLine();
-
-						Post editedPost = new Post(postNo, postTitle, postContent, member.getUserID());
-
-						boolean error = postList.editPost(editedPost);
-
-						if (error == true) {
-							System.out.println("게시글 수정이 완료되었습니다.");
-						} else if (error == false) {
-							System.out.println("게시글 수정이 완료되지 않았습니다.");
-						}
+				boolean success = false;
+				System.out.println("아이디 >>> ");
+				String id = scn.nextLine();
+				for (int i = 0; i < members.length; i++) {
+					if (members[i] != null && members[i].getUserID().equals(id)) {
+						success = members[i].login(members[i]);
 					}
+				}
+
+				if (success == false) {
+					System.out.println("로그인에 실패하셨습니다.");
+					continue;
+
+				}
+
+				System.out.println("수정할 게시글 번호 >>> ");
+				int postNo = scn.nextInt();
+				scn.nextLine();
+				System.out.println("제목 수정 >>> ");
+				String postTitle = scn.nextLine();
+				System.out.println("내용 수정 >>> ");
+				String postContent = scn.nextLine();
+
+				Post editedPost = new Post(postNo, postTitle, postContent, id);
+
+				boolean error = postList.editPost(editedPost);
+
+				if (error == true) {
+					System.out.println("게시글 수정이 완료되었습니다.");
+				} else if (error == false) {
+					System.out.println("게시글 수정이 완료되지 않았습니다.");
 				}
 
 			} else if (selectNo == 3) {
@@ -131,21 +134,33 @@ public class PostExe {
 				}
 
 			} else if (selectNo == 4) {
-				for (User member : members) {
-					if (member != null) {
-						member.login(member);
-						System.out.println("삭제할 게시글 번호 >>> ");
-						int postNo = scn.nextInt();
-						scn.nextLine();
-						int error = postList.deletePost(postNo);
-						if (error == 0) {
-							System.out.println("게시글을 정상적으로 삭제했습니다.");
-						} else if (error == -1) {
-							System.out.println("게시글 삭제가 완료되지 않았습니다.");
-						}
+				boolean success = false;
+				System.out.println("아이디 >>> ");
+				String id = scn.nextLine();
+				for (int i = 0; i < members.length; i++) {
+					if (members[i] != null && members[i].getUserID().equals(id)) {
+						success = members[i].login(members[i]);
 					}
+				}
+
+				if (success == false) {
+					System.out.println("로그인에 실패하셨습니다.");
+					continue;
 
 				}
+
+				System.out.println("삭제할 게시글 번호 >>> ");
+				int postNo = scn.nextInt();
+				scn.nextLine();
+				int error = postList.deletePost(postNo, id);
+				if (error == 0) {
+					System.out.println("게시글을 정상적으로 삭제했습니다.");
+				} else if (error == -1) {
+					System.out.println("게시글 삭제가 완료되지 않았습니다.");
+				} else if (error == 1) {
+					System.out.println("게시글 작성자가 아니면 게시글을 삭제할 수 없습니다.");
+				}
+
 			} else if (selectNo == 5) {
 				for (User member : members) {
 					if (member != null) {
@@ -185,6 +200,12 @@ public class PostExe {
 			} else if (selectNo == 9) {
 				System.out.println("프로그램을 종료합니다.");
 				break;
+			} else if (selectNo == -1) {
+				for (int i = 0; i < members.length; i++) {
+					if (members[i] != null) {
+						members[i].showUser();
+					}
+				}
 			} else {
 				System.out.println("메뉴를 다시 선택해주세요.");
 			}

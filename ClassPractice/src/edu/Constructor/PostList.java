@@ -33,14 +33,15 @@ public class PostList {
 	public boolean editPost(Post post) {
 		boolean errorcase = false;
 		for (int i = 0; i < posts.length; i++) {
-			if (posts[i].getpostNum() == post.getpostNum()) {
-				posts[i].setTitle(post.getTitle());
-				posts[i].setContent(post.getContent());
-				errorcase = true;
-				break;
+			if (posts[i] != null && posts[i].getWriter().equals(post.getWriter())) {
+				if (posts[i] != null && posts[i].getpostNum() == post.getpostNum()) {
+					posts[i].setTitle(post.getTitle());
+					posts[i].setContent(post.getContent());
+					errorcase = true;
+					break;
+				}
 			}
 		}
-
 		return errorcase;
 
 	}
@@ -62,14 +63,18 @@ public class PostList {
 	}
 
 	// 포스트 삭제 (key = 게시물 번호)
-	public int deletePost(int postNo) {
+	public int deletePost(int postNo, String userID) {
 		int errorcase = -1;
 		for (int i = 0; i < posts.length; i++) {
-			if (posts[i] != null) {
+			// 로그인한 유저가 작성자명과 등일한 경우 삭제
+			if (posts[i] != null && posts[i].getWriter().equals(userID)) {
 				if (posts[i].getpostNum() == postNo) {
 					posts[i] = null;
 					errorcase = 0;
 				}
+				// 로그인한 유저와 작성자가 다를 경우 권한 없음으로 삭제 불가
+			} else if (posts[i] != null && !(posts[i].getWriter().equals(userID))) {
+				errorcase = 1;
 			}
 		}
 		return errorcase;

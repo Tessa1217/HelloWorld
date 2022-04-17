@@ -40,23 +40,30 @@ public class User {
 	}
 
 	public void showUser() {
-		System.out.println("아이디: " + userID + " 유저 이름: " + userName);
+		System.out.println("===========================");
+		System.out.println("아이디: " + userID + "\n 유저 이름: " + userName);
+		System.out.println("===========================");
 	}
 
-	public void login(User user) {
-		System.out.println("아이디 >>> ");
-		String id = scn.next();
-		scn.nextLine();
-		if (user.getUserID().equals(id)) {
-			System.out.println("비밀번호 >>> ");
-			String password = scn.next();
-			if (user.getPassword().equals(password)) {
-				System.out.println(user.getUserName() + " 님, 로그인에 성공하셨습니다.");
-			} else {
-				System.out.println("비밀번호가 틀렸습니다. 재로그인 해주세요.");
-			}
+	public boolean login(User user) {
+		boolean loginSuccess = false;
+		System.out.println(user.getUserID() + " 님, 비밀번호를 입력해주세요.");
+		String password = scn.next();
+		if (user.getPassword().equals(password)) {
+			System.out.println(user.getUserName() + "님, 로그인에 성공하셨습니다.");
+			loginSuccess = true;
 		} else {
-			System.out.println("등록된 아이디가 없습니다.");
+			loginSuccess = false;
 		}
+		return loginSuccess;
+
+		/*
+		 * System.out.println("아이디 >>> "); String id = scn.next(); if
+		 * (user.getUserID().equals(id)) { System.out.println("비밀번호 >>> "); String
+		 * password = scn.next(); if (user.getPassword().equals(password)) {
+		 * System.out.println(user.getUserName() + " 님, 로그인에 성공하셨습니다."); } else {
+		 * System.out.println("비밀번호가 틀렸습니다. 재로그인 해주세요."); } } else {
+		 * System.out.println("등록된 아이디가 없습니다."); }
+		 */
 	}
 }
