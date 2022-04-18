@@ -1,8 +1,8 @@
-package edu.app;
+package edu.game;
 
 import java.util.Scanner;
 
-public class NumberGuess {
+public class NumberGuess3 {
 	public static void main(String[] args) {
 
 		boolean[] check = new boolean[5];

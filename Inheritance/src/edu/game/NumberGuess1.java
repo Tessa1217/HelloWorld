@@ -1,8 +1,8 @@
-package edu.inherit;
+package edu.game;
 
 import java.util.Scanner;
 
-public class NumberGame {
+public class NumberGuess1 {
 	public static void main(String[] args) {
 		boolean[] check = new boolean[5];
 		int[] intAry = new int[5];
