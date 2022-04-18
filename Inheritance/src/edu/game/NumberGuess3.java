@@ -29,30 +29,22 @@ public class NumberGuess3 {
 
 		Scanner scn = new Scanner(System.in);
 		boolean run = true;
-		int[] storedLocation = new int[5];
-		int userLocation = 0;
 		while (run) {
 			System.out.println("5의 위치를 맞춰보세요 >>> ");
 			int location = scn.nextInt();
-			storedLocation[location - 1] = location;
-			userLocation++;
 
 			for (int i = 0; i < intAry.length; i++) {
-				if (storedLocation[i] != 0) {
-					locationList[i] = "[" + intAry[i] + "] ";
-				}
-			}
-
-			for (int i = 0; i < locationList.length; i++) {
 				if (intAry[location - 1] == 5) {
-					System.out.println("맞추셨습니다.");
+					System.out.println("정답입니다.");
 					run = false;
 					break;
+				}
+				if (locationList[location - 1] == "[*] ") {
+					locationList[location - 1] = "[" + intAry[location - 1] + "] ";
 				}
 				System.out.print(locationList[i]);
 			}
 			System.out.println();
-
 		}
 
 	}
