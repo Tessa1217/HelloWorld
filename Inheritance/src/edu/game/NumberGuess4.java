@@ -31,7 +31,6 @@ public class NumberGuess4 {
 		while (run) {
 			System.out.println("5의 위치를 맞춰보세요 (1~5번째) >>> ");
 			int location = scn.nextInt();
-
 			for (int i = 0; i < intAry.length; i++) {
 				if (intAry[location - 1] == 5) {
 					System.out.println("맞추셨습니다. 5는 " + location + "번째에 있었습니다.");
