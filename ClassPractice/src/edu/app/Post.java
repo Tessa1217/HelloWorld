@@ -1,4 +1,4 @@
-package edu.Constructor;
+package edu.app;
 
 public class Post {
 

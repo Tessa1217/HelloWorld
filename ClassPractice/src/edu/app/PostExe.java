@@ -1,4 +1,4 @@
-package edu.Constructor;
+package edu.app;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
