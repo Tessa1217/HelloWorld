@@ -22,7 +22,7 @@ public class Friend {
 	}
 
 	// Getters & Setters
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 
