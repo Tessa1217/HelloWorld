@@ -1,8 +1,10 @@
 package edu.collection;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import edu.inherit.Friend;
+import edu.inherit.Gender;
 
 // App의 용도: 친구 목록 저장하기 위한 앱
 // App의 기능: 추가, 수정, 삭제, 조회
@@ -12,42 +14,41 @@ public class FriendApp {
 		// 추가, 수정, 삭제, 조회 => 컨트롤 역할
 		FriendService service = new FriendServiceArray();
 		service = new FriendServiceList();
-		service = new FriendServiceStream();
+//		service = new FriendServiceStream();
 		Scanner scn = new Scanner(System.in);
 
 		while (true) {
 
-			System.out.println("====================================================");
-			System.out.println("1.추가 | 2.수정 | 3.삭제 | 4.조회 | 5. 전체 리스트 | 6.종료");
-			System.out.println("====================================================");
+			System.out.println("===============================================================");
+			System.out.println("1.추가 | 2.수정 | 3.삭제 | 4.조회 | 5. 전체 리스트 | 6.성별조회 | 7.종료");
+			System.out.println("===============================================================");
 			System.out.println("선택 >>> ");
 			int menu = scn.nextInt();
 
-			if (menu == 1) {
-				System.out.println("친구 이름 >>> ");
+			if (menu == FriendService.ADD) {
+				System.out.println("친구 이름과 연락처 >>> ");
 				String name = scn.next();
-				scn.nextLine();
-				System.out.println("친구 연락처 >>> ");
-				String contact = scn.nextLine();
-				Friend friend = new Friend(name, contact);
+				String contact = scn.next();
+				System.out.println("친구 성별 >>> ex) 남자, 여자");
+				String gen = scn.next();
+				Gender gender = FriendService.findGender(gen);
+				Friend friend = new Friend(name, contact, gender);
 				service.addFriend(friend);
 
-			} else if (menu == 2) {
+			} else if (menu == FriendService.MOD) {
 				System.out.println("친구 이름 >>> ");
 				String name = scn.next();
-				scn.nextLine();
 				System.out.println("새로운 연락처 >>> ");
-				String contact = scn.nextLine();
-				Friend friend = new Friend(name, contact);
+				String contact = scn.next();
+				Friend friend = new Friend(name, contact, Gender.Male);
 				service.modFriend(friend);
 
-			} else if (menu == 3) {
+			} else if (menu == FriendService.DEL) {
 				System.out.println("삭제할 친구 이름 >>> ");
 				String name = scn.next();
-				scn.nextLine();
 				service.remFriend(name);
 
-			} else if (menu == 4) {
+			} else if (menu == FriendService.SEARCH) {
 				System.out.println("조회할 친구 이름 >>> ");
 				String name = scn.next();
 				Friend friend = service.findFriend(name);
@@ -56,14 +57,25 @@ public class FriendApp {
 					System.out.println(friend.toString());
 				}
 
-			} else if (menu == 5) {
+			} else if (menu == FriendService.LIST) {
 				service.listFriend();
-			} else if (menu == 6) {
+
+			} else if (menu == FriendService.GENDERLIST) {
+				System.out.println("조회할 성별 >>> ex) 남, 여");
+				String gen = scn.next();
+				Gender gender = FriendService.findGender(gen);
+				ArrayList<Friend> genderList = new ArrayList<Friend>(service.findGender(gender));
+				for (Friend friend : genderList) {
+					System.out.println(friend.toString());
+				}
+
+			} else if (menu == 8) {
 				System.out.println("End of program");
 				break;
 
 			} else {
 				System.out.println("유효한 값을 입력하세요");
+
 			}
 		}
 	}

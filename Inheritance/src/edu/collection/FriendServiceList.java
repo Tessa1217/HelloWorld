@@ -1,7 +1,9 @@
 package edu.collection;
 
-import edu.inherit.Friend;
 import java.util.ArrayList;
+
+import edu.inherit.Friend;
+import edu.inherit.Gender;
 
 public class FriendServiceList implements FriendService {
 
@@ -64,4 +66,17 @@ public class FriendServiceList implements FriendService {
 			System.out.println();
 		}
 	}
+
+	@Override
+	public ArrayList<Friend> findGender(Gender gender) {
+		ArrayList<Friend> genderList = new ArrayList<Friend>();
+		for (int i = 0; i < friends.size(); i++) {
+			if (friends.get(i).getGender() == gender) {
+				// 열거형 타입 클래스 (==로 비교)
+				genderList.add(friends.get(i));
+			}
+		}
+		return genderList;
+	}
+
 }

@@ -1,6 +1,9 @@
 package edu.collection;
 
+import java.util.ArrayList;
+
 import edu.inherit.Friend;
+import edu.inherit.Gender;
 
 public class FriendServiceArray implements FriendService {
 
@@ -59,6 +62,17 @@ public class FriendServiceArray implements FriendService {
 				System.out.println();
 			}
 		}
+	}
+
+	@Override
+	public ArrayList<Friend> findGender(Gender gender) {
+		ArrayList<Friend> genderList = new ArrayList<Friend>();
+		for (Friend friend : friends) {
+			if (friend.getGender() == gender) {
+				genderList.add(friend);
+			}
+		}
+		return genderList;
 	}
 
 }
