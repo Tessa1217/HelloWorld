@@ -13,15 +13,15 @@ public class FriendApp {
 	public static void main(String[] args) {
 		// 추가, 수정, 삭제, 조회 => 컨트롤 역할
 		FriendService service = new FriendServiceArray();
-		service = new FriendServiceList();
+		// service = new FriendServiceList();
 //		service = new FriendServiceStream();
 		Scanner scn = new Scanner(System.in);
 
 		while (true) {
 
-			System.out.println("===============================================================");
-			System.out.println("1.추가 | 2.수정 | 3.삭제 | 4.조회 | 5. 전체 리스트 | 6.성별조회 | 7.종료");
-			System.out.println("===============================================================");
+			System.out.println("===============================================================================");
+			System.out.println("1.추가 | 2.연락처 수정 | 3.삭제 | 4.조회 | 5. 전체 리스트 | 6.성별조회 | 7.이름 변경 8.종료");
+			System.out.println("===============================================================================");
 			System.out.println("선택 >>> ");
 			int menu = scn.nextInt();
 
@@ -38,7 +38,7 @@ public class FriendApp {
 			} else if (menu == FriendService.MOD) {
 				System.out.println("친구 이름 >>> ");
 				String name = scn.next();
-				System.out.println("새로운 연락처 >>> ");
+				System.out.println("새로운 이름 >>> ");
 				String contact = scn.next();
 				Friend friend = new Friend(name, contact, Gender.Male);
 				service.modFriend(friend);
@@ -68,6 +68,14 @@ public class FriendApp {
 				for (Friend friend : genderList) {
 					System.out.println(friend.toString());
 				}
+
+			} else if (menu == FriendService.NAMECHG) {
+				System.out.println("친구 이름 >>> ");
+				String name = scn.next();
+				System.out.println("수정할 친구 이름 >>> ");
+				String newName = scn.next();
+				Friend friend = new Friend(name, null, null);
+				service.changeName(friend, newName);
 
 			} else if (menu == 8) {
 				System.out.println("End of program");

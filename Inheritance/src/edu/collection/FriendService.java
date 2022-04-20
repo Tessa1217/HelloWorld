@@ -14,6 +14,7 @@ public interface FriendService {
 	public int SEARCH = 4;
 	public int LIST = 5;
 	public int GENDERLIST = 6;
+	public int NAMECHG = 7;
 
 	// 추가, 수정, 삭제, 조회
 	public void addFriend(Friend friend);
@@ -31,6 +32,8 @@ public interface FriendService {
 	public default void emptyFriend(String sentence) {
 
 	}
+
+	public void changeName(Friend friend, String newName);
 
 	public static Gender findGender(String gen) {
 		Gender gender = Gender.Male;

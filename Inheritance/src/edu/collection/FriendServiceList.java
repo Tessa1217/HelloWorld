@@ -79,4 +79,15 @@ public class FriendServiceList implements FriendService {
 		return genderList;
 	}
 
+	@Override
+	public void changeName(Friend friend, String newName) {
+		for (Friend frd : friends) {
+			if (frd.getName().equals(friend.getName())) {
+				frd.setName(newName);
+				System.out.println("이름이 변경되었습니다.");
+			}
+		}
+
+	}
+
 }

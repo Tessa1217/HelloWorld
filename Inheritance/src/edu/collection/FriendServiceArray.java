@@ -75,4 +75,16 @@ public class FriendServiceArray implements FriendService {
 		return genderList;
 	}
 
+	@Override
+	public void changeName(Friend friend, String newName) {
+		for (Friend frd : friends) {
+			if (frd != null && frd.getName().equals(friend.getName())) {
+				frd.setName(newName);
+				System.out.println("이름 수정이 완료되었습니다.");
+				break;
+			}
+		}
+
+	}
+
 }
