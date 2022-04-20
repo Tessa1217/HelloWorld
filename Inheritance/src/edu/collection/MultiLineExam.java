@@ -3,8 +3,8 @@ package edu.collection;
 import java.util.Scanner;
 
 class Member {
-	String name;
-	int age;
+	private String name;
+	private int age;
 
 	Member(String name, int age) {
 		this.name = name;
