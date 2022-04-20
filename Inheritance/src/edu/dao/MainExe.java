@@ -1,4 +1,4 @@
-package edu.project;
+package edu.dao;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package edu.project;
+package edu.dao;
 
 public class OracleDAO implements DAO {
 
