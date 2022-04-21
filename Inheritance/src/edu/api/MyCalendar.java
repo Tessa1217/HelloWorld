@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class MyCalendar {
 	public static void main(String[] args) {
 		String y = "2022";
-		String m = "04";
+		String m = "07";
 
 		showCal(y, m);
 	}
@@ -18,7 +18,7 @@ public class MyCalendar {
 		cal1.set(srchYear, srchMonth - 1, 1);
 		int lastDay = cal1.getActualMaximum(Calendar.DAY_OF_MONTH);
 		int firstDay = cal1.get(Calendar.DAY_OF_WEEK);
-		System.out.println(firstDay);
+		// System.out.println(firstDay);
 		System.out.printf("%12s년 %4s월", year, month);
 		System.out.println();
 		String[] days = { "Sun", "Mon", "Tue", "Wed", "Thr", "Fri", "Sat" };
@@ -29,7 +29,7 @@ public class MyCalendar {
 		System.out.print("============================");
 		System.out.println();
 		for (int i = 0; i < firstDay - 1; i++) {
-			System.out.printf("%4s", "+");
+			System.out.printf("%4s", " ");
 		}
 		for (int i = 0; i < lastDay; i++) {
 			System.out.printf("%4d", (i + 1));
@@ -37,6 +37,7 @@ public class MyCalendar {
 				System.out.println();
 			}
 		}
+		System.out.println();
 		System.out.println("============================");
 
 	}
